@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Attendance</title>
+        <link rel='stylesheet' href='Layout.css' title='style1' media='screen' />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet"= href="https://www.w3schools.com/w3css/5/w3.css">
+		
+        <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+        
+		<style>
+        
+        h1 {
+            color: rgb(255, 255, 255);
+        }
+
+        h2 {
+            color: rgb(255, 255, 255);
+        }
+
+        h3 {
+			color: rgb(161, 198, 255);
+        }
+		
+		:root{
+      --bg: #0b1020;
+      --card: #121932;
+      --muted: #7d8fb3;
+      --text: #e6ecff;
+      --accent: #7aa2ff;
+      --accent-2: #35d0a7;
+      --ring: rgba(122,162,255,.35);
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      color: var(--text);
+      min-height:100dvh; display:grid; place-items:center; padding:24px;
+    }
+    .wrap{width:min(760px, 100%);}
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 20px; padding: 24px; backdrop-filter: blur(6px);
+      box-shadow: 0 8px 30px rgba(0,0,0,.35);
+    }
+    h1{font-size: clamp(20px, 2.6vw, 28px); margin:0 0 6px}
+    p.sub{margin:0 0 18px; color: var(--muted)}
+
+    /* Progress bar */
+    .progress{
+      --height: 16px;
+      position: relative; height: var(--height); width: 100%; border-radius: 999px;
+      background: rgba(255,255,255,.08); overflow: hidden; border: 1px solid rgba(255,255,255,.1);
+    }
+    .progress .bar{ height:100%; width:0%;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      transition: width .35s ease;
+    }
+    .progress-head{
+      display:flex; align-items:center; justify-content:space-between; gap:12px; margin: 8px 0 14px;
+    }
+    .pct{font-variant-numeric: tabular-nums; font-weight:700}
+
+    /* Checkboxes */
+    .tasks{ display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:12px; margin-top: 18px;}
+    label.task{
+      display:flex; align-items:flex-start; gap:10px; padding:12px 14px; border-radius:14px; cursor:pointer;
+      background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.08);
+    }
+    label.task:hover{ box-shadow: 0 0 0 4px var(--ring);}
+    input[type="checkbox"]{ width:18px; height:18px; margin-top:2px; }
+    small{ color: var(--muted)}
+
+    .sr-only{position:absolute!important; height:1px; width:1px; overflow:hidden; clip:rect(1px,1px,1px,1px); white-space:nowrap}
+		
+        </style>
+    </head>
+    <body>
+    <div id="container">
+    
+    <div id="header">
+		<div id="logo">
+			<a href="Home.html"><img src="../Images/aotea%20logo.png" width="140" height="150" alt="Aotea College Logo" border="0" /></a>
+		</div>
+    <br><br><h1 align="center">Attendance</h1>
+    
+    </div> <!--header-->
+    
+	<div class="navbar">
+	   <div class="sub-menu">
+	     <button class="btn">Student Details<i class="fa fa-caret-down"></i></button>
+		 <div class="content">
+		    <a href="Attendance.html">Student Attendance</a>
+			<a href="School Dates Tracker.html">Students Tracker</a>
+		 </div>
+	   </div>
+	   <div class="sub-menu">
+	     <button class="btn">Assessment Work<i class="fa fa-caret-down"></i></button>
+		 <div class="content">
+		    <a href="Class 1.html">Class 1</a>
+			<a href="Class 2.html">Class 2</a>
+			<a href="Class 3.html">Class 3</a>
+			<a href="Class 4.html">Class 4</a>
+            <a href="Class 5.html">Class 5</a>
+            <a href="Class 6.html">Class 6</a>
+            <a href="Extra Curricular.html">Extra Curricular</a>
+		 </div>
+	   </div>
+	   <a href="Goals.html">Goals</a>
+	   <div class="sub-menu">
+	     <button class="btn">Help & Contacts<i class="fa fa-caret-down"></i></button>
+		 <div class="content">
+		    <a href="Help.html">Help</a>
+			<a href="Contacts.html">Contacts</a>
+		 </div>
+		</div>
+		<a href="About.html">About</a>
+	</div>
+	
+	
+    
+    <div id="content">
+   <h2>Attendance</h2>
+   
+   
+<div class="wrap">
+    <div class="card" role="region" aria-labelledby="title">
+      <h1 id="title">Class work progress</h1>
+      <p class="sub">Tick tasks to watch the progress rise. Un-tick to go back.</p>
+
+      <div class="progress-head">
+        <div>
+          <div class="sr-only" id="progress-desc">Overall completion of selected tasks</div>
+          <meter id="meter" min="0" max="100" value="0" aria-describedby="progress-desc" style="display:none"></meter>
+        </div>
+        <div class="pct" id="pct">0%</div>
+      </div>
+      <div class="progress" aria-hidden="true"><div class="bar" id="bar"></div></div>
+
+      <div class="tasks" id="tasks">
+        <!-- Each checkbox has a weight; total is auto-summed -->
+        <label class="task">
+          <input type="checkbox" data-weight="20">
+          <div>
+            <div>Physics work</div>
+            <small>Worth 20%</small>
+          </div>
+        </label>
+        <label class="task">
+          <input type="checkbox" data-weight="20">
+          <div>
+            <div>Architecture work</div>
+            <small>Worth 20%</small>
+          </div>
+        </label>
+        <label class="task">
+          <input type="checkbox" data-weight="20">
+          <div>
+            <div>Maths work</div>
+            <small>Worth 20%</small>
+          </div>
+        </label>
+        <label class="task">
+          <input type="checkbox" data-weight="20">
+          <div>
+            <div>Chemistry work</div>
+            <small>Worth 20%</small>
+          </div>
+        </label>
+        <label class="task">
+          <input type="checkbox" data-weight="20">
+          <div>
+            <div>Coding work</div>
+            <small>Worth 20%</small>
+          </div>
+        </label>
+      </div>
+    </div>
+  </div>
+
+<script>
+const checkboxes = Array.from(document.querySelectorAll('input[type="checkbox"][data-weight]'));
+    const pctEl = document.getElementById('pct');
+    const barEl = document.getElementById('bar');
+    const meterEl = document.getElementById('meter');
+
+    function getTotalWeight(){
+      return checkboxes.reduce((acc, el) => acc + Number(el.dataset.weight || 0), 0) || 1;
+    }
+
+    function updateProgress(){
+      const total = getTotalWeight();
+      const done = checkboxes.reduce((acc, el) => acc + (el.checked ? Number(el.dataset.weight || 0) : 0), 0);
+      const pct = Math.round((done / total) * 100);
+      pctEl.textContent = pct + '%';
+      barEl.style.width = pct + '%';
+      meterEl.value = pct; // for screen readers
+    }
+
+    checkboxes.forEach(cb => cb.addEventListener('change', updateProgress));
+    updateProgress();
+</script>
+	
+	
+	<p>
+   
+   </p>
+	
+ 
+    </div> <!--content-->
+    
+    <div id="footer">
+		<div id="back">
+			<a href="Attendance.html">Back to top</a>
+		</div>
+		<h3>
+			&copy: Haley Wilson
+		</h3>
+    </div> <!--footer-->
+    
+    </div> <!--container-->
+    </body>
+</html>
